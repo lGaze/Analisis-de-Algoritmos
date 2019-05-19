@@ -76,23 +76,25 @@ printVector( std::vector<int> numbers )
 
 int main()
 {
-  std::vector<int> nums = randomNumbers( 10000 );
+  std::vector<int> RandomNums = randomNumbers( 10000 );
+  std::vector<int> AscendentNums = ascendingOrder( 10000 );
+  std::vector<int> DescendentNums = descendingOrder( 10000 );
 
   SortingAlgorithms algorithm;
 
   std::cout << "Entry Vector:\n " << std::endl;
 
-  printVector( nums );
+  printVector( RandomNums );
 
   std::cout << "\nBubble Sorting:\n " << std::endl;
 
-  printVector( algorithm.bubbleSort( nums ) );
+  printVector( algorithm.bubbleSort( RandomNums ) );
 
   std::cout << "\nElapsed Time: " << algorithm.seg.count() << " segs" << std::endl;
 
   std::cout << "\nInsertion Sorting:\n " << std::endl;
 
-  printVector( algorithm.insertionSort( nums ) );
+  printVector( algorithm.insertionSort( RandomNums ) );
 
   std::cout << "\nElapsed Time: " << algorithm.seg.count() << " segs" << std::endl;
   
