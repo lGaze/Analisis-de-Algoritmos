@@ -19,7 +19,7 @@ public:
   SortingAlgorithms();
 
   /**
-   * @brief Default Constructor
+   * @brief Default destructor
    */
   ~SortingAlgorithms();
 
@@ -35,7 +35,51 @@ public:
   std::vector<int>
   insertionSort( std::vector<int> numbers );
 
+  /**
+   * @brief 
+   */
+  std::vector<int>
+  quickSort( std::vector<int>& numbers, int left, int right );
+
+  /**
+   * @brief 
+   */
+  std::vector<int>
+  mergeSort( std::vector<int>& numbers, int left, int right );
+
+  /**
+   * @brief 
+   */
+  int
+  binarySearch( std::vector<int> numbers, int left, int right, int x );
+
+  /**
+   * @brief 
+   */
+  int
+  linearSearch( std::vector<int> numbers, int x )
+  {
+    for ( int i = 0; i < numbers.size(); i++ )
+      if ( numbers[i] == x )
+        return i;
+    return -1;
+  }
+
   
+private:
+
+  /**
+   * @brief 
+   */
+  int
+  partition( std::vector<int>& numbers, int start, int end );
+
+  /**
+   * @brief 
+   */
+  void
+  merge( std::vector<int>& numbers, int left, int mid, int right );
+
   std::chrono::time_point<std::chrono::system_clock> start, end;
 
   std::chrono::duration<double> seg;
