@@ -73,6 +73,8 @@ SortingAlgorithms::quickSort( std::vector<int>& numbers,
                                                int left,
                                                int right )
 {
+  start = std::chrono::system_clock::now();
+
   if ( left < right )
   {
 
@@ -82,12 +84,17 @@ SortingAlgorithms::quickSort( std::vector<int>& numbers,
     quickSort( numbers, pi + 1, right );
   }
 
+  end = std::chrono::system_clock::now();
+
+  seg = end - start;
   return numbers;
 }
 
 std::vector<int>
 SortingAlgorithms::mergeSort( std::vector<int>& numbers, int left, int right )
 {
+  start = std::chrono::system_clock::now();
+
   if ( left < right )
   {
     int mid = left + ( right - left ) / 2;
@@ -97,6 +104,9 @@ SortingAlgorithms::mergeSort( std::vector<int>& numbers, int left, int right )
 
     merge( numbers, left, mid, right );
   }
+  end = std::chrono::system_clock::now();
+
+  seg = end - start;
   return numbers;
 }
 
@@ -126,7 +136,8 @@ SortingAlgorithms::binarySearch( std::vector<int> numbers,
   return -1;
 }
 
-int SortingAlgorithms::linearSearch( std::vector<int> numbers, int x )
+int
+SortingAlgorithms::linearSearch( std::vector<int> numbers, int x )
 {
   
   for ( int i = 0; i < numbers.size(); i++ )

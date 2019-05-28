@@ -57,14 +57,10 @@ public:
    * @brief 
    */
   int
-  linearSearch( std::vector<int> numbers, int x )
-  {
-    for ( int i = 0; i < numbers.size(); i++ )
-      if ( numbers[i] == x )
-        return i;
-    return -1;
-  }
+  linearSearch( std::vector<int> numbers, int x );
 
+ 
+  std::chrono::duration<double> seg;
   
 private:
 
@@ -82,6 +78,5 @@ private:
 
   std::chrono::time_point<std::chrono::system_clock> start, end;
 
-  std::chrono::duration<double> seg;
 
 };

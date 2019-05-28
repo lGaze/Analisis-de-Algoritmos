@@ -76,9 +76,9 @@ printVector( std::vector<int> numbers )
 
 int main()
 {
-  std::vector<int> RandomNums = randomNumbers( 10 );
-  std::vector<int> AscendentNums = ascendingOrder( 1000 );
-  std::vector<int> DescendentNums = descendingOrder( 100 );
+  std::vector<int> RandomNums = randomNumbers( 2500 );
+  std::vector<int> AscendentNums = ascendingOrder( 2500 );
+  std::vector<int> DescendentNums = descendingOrder( 2500 );
   int numberToSearch = 50;
 
   SortingAlgorithms algorithm;
@@ -99,33 +99,36 @@ int main()
   //
   //std::cout << "\nElapsed Time: " << algorithm.seg.count() << " segs" << std::endl;
   
-  std::cout << "Linear Search of the number: " << numberToSearch << std::endl;
-
-  std::cout << "Te number is in the position : " << 
-    algorithm.linearSearch( AscendentNums, 50 ) <<
-    std::endl;
-
-  std::cout << "Bynary Search of the number: " << numberToSearch << std::endl;
-
-  std::cout << "Te number is in the position : " <<
-    algorithm.binarySearch( AscendentNums,
-                            AscendentNums.front(),
-                            AscendentNums.back(),
-                            numberToSearch ) <<
-   std::endl;
+ // std::cout << "Linear Search of the number: " << numberToSearch << std::endl;
+ //
+ // std::cout << "Te number is in the position : " << 
+ //   algorithm.linearSearch( AscendentNums, 50 ) <<
+ //   std::endl;
+ //
+ // std::cout << "Bynary Search of the number: " << numberToSearch << std::endl;
+ //
+ // std::cout << "Te number is in the position : " <<
+ //   algorithm.binarySearch( AscendentNums,
+ //                           AscendentNums.front(),
+ //                           AscendentNums.back(),
+ //                           numberToSearch ) <<
+ //  std::endl;
 
 
   std::cout << "Quick Sorting: " << std::endl;
   printVector( algorithm.quickSort( RandomNums,
                                     0, 
-                                    RandomNums.size() - 1 ) );
+                                    DescendentNums.size() - 1 ) );
+
+  std::cout << "\nElapsed Time: " << algorithm.seg.count() << " segs" << std::endl;
 
   std::cout << "Merge Sorting: " << std::endl;
  
-  printVector( algorithm.mergeSort( DescendentNums,
+  printVector( algorithm.mergeSort( RandomNums,
                                     0, 
                                     DescendentNums.size() - 1 ) );
 
+  std::cout << "\nElapsed Time: " << algorithm.seg.count() << " segs" << std::endl;
 
  
   system( "pause" );
