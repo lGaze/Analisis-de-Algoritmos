@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <algorithm>
 
 class SortingAlgorithms
 {
@@ -50,6 +51,25 @@ public:
   /**
    * @brief 
    */
+  std::vector<int>
+  countingSort( std::vector<int>& numbers );
+
+  /**
+   * @brief 
+   */
+  std::vector<int>
+  bucketSort( std::vector<int>& numbers );
+
+  /**
+   * @brief 
+   */
+  std::vector<int>
+  radixSort( std::vector<int>& numbers );
+
+
+  /**
+   * @brief 
+   */
   int
   binarySearch( std::vector<int> numbers, int left, int right, int x );
 
@@ -75,6 +95,12 @@ private:
    */
   void
   merge( std::vector<int>& numbers, int left, int mid, int right );
+
+  /**
+   * @brief 
+   */
+  std::vector<int>
+  countSort( std::vector<int>& numbers, int exp );
 
   std::chrono::time_point<std::chrono::system_clock> start, end;
 

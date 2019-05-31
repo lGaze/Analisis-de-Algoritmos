@@ -115,18 +115,14 @@ int main()
  //  std::endl;
 
 
-  std::cout << "Quick Sorting: " << std::endl;
-  printVector( algorithm.quickSort( RandomNums,
-                                    0, 
-                                    DescendentNums.size() - 1 ) );
+  std::cout << "Counting Sorting: " << std::endl;
+  printVector( algorithm.countingSort( DescendentNums ));
 
   std::cout << "\nElapsed Time: " << algorithm.seg.count() << " segs" << std::endl;
 
-  std::cout << "Merge Sorting: " << std::endl;
+  std::cout << "Radix Sorting: " << std::endl;
  
-  printVector( algorithm.mergeSort( RandomNums,
-                                    0, 
-                                    DescendentNums.size() - 1 ) );
+  printVector( algorithm.radixSort( DescendentNums ) );
 
   std::cout << "\nElapsed Time: " << algorithm.seg.count() << " segs" << std::endl;
 

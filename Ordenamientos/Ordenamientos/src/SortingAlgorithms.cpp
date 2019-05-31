@@ -110,7 +110,100 @@ SortingAlgorithms::mergeSort( std::vector<int>& numbers, int left, int right )
   return numbers;
 }
 
-int 
+std::vector<int> 
+SortingAlgorithms::countingSort( std::vector<int>& numbers )
+{
+  start = std::chrono::system_clock::now();
+
+  int max = *max_element( numbers.begin(), numbers.end() );
+  int min = *min_element( numbers.begin(), numbers.end() );
+  int range = max - min + 1;
+
+  std::vector<int> count( range ), output( numbers.size() );
+
+  for ( int i = 0; i < numbers.size(); i++ )
+  {
+    count[numbers[i] - min]++;
+  }
+
+  for ( int i = 1; i < count.size(); i++ )
+  {
+    count[i] += count[i - 1];
+  }
+
+  for ( int i = numbers.size() - 1; i >= 0; i-- )
+  {
+    output[count[numbers[i] - min] - 1] = numbers[i];
+    count[numbers[i] - min]--;
+  }
+
+  for ( int i = 0; i < numbers.size(); i++ )
+  {
+    numbers[i] = output[i];
+  }
+
+  end = std::chrono::system_clock::now();
+
+  seg = end - start;
+
+  return numbers;
+}
+
+std::vector<int> SortingAlgorithms::bucketSort( std::vector<int>& numbers )
+{
+
+  start = std::chrono::system_clock::now();
+
+  int n = numbers.size();
+  std::vector<std::vector<float>> buckets;
+  buckets.resize( n );
+
+  for ( int i = 0; i < n; i++ )
+  {
+    int bi = n * numbers[i]; 
+    buckets[bi].push_back( numbers[i] );
+  }
+
+  for ( int i = 0; i < n; i++ )
+  {
+    std::sort( buckets[i].begin(), buckets[i].end() );
+  }
+
+  int index = 0;
+  for ( int i = 0; i < n; i++ )
+  {
+    for ( int j = 0; j < buckets[i].size(); j++ )
+    {
+      numbers[index++] = buckets[i][j];
+    }
+  }
+
+  end = std::chrono::system_clock::now();
+
+  seg = end - start;
+
+  return numbers;
+}
+
+std::vector<int> SortingAlgorithms::radixSort( std::vector<int>& numbers )
+{
+  start = std::chrono::system_clock::now();
+
+  int m = *max_element( numbers.begin(), numbers.end() );
+
+  for ( int exp = 1; m / exp > 0; exp *= 10 )
+  {
+    countSort( numbers, exp );
+  }
+
+  end = std::chrono::system_clock::now();
+
+  seg = end - start;
+
+  return numbers;
+}
+
+int
 SortingAlgorithms::binarySearch( std::vector<int> numbers, 
                                  int left, 
                                  int right, 
@@ -221,4 +314,37 @@ SortingAlgorithms::merge( std::vector<int>& numbers, int left, int mid, int righ
     k++;
   }
 
+}
+
+std::vector<int> 
+SortingAlgorithms::countSort( std::vector<int>& numbers, int exp )
+{
+  int n = numbers.size();
+  std::vector<int> output;
+  output.resize( n );
+
+  int i, count[10] = { 0 };
+
+  for ( i = 0; i < n; i++ )
+  {
+    count[( numbers[i] / exp ) % 10]++;
+  }
+
+  for ( i = 1; i < 10; i++ )
+  {
+    count[i] += count[i - 1];
+  }
+
+  for ( i = n - 1; i >= 0; i-- )
+  {
+    output[count[( numbers[i] / exp ) % 10] - 1] = numbers[i];
+    count[( numbers[i] / exp ) % 10]--;
+  }
+
+  for ( i = 0; i < n; i++ )
+  {
+    numbers[i] = output[i];
+  }
+
+  return numbers;
 }
